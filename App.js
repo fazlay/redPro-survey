@@ -1,14 +1,41 @@
-import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
-import { SafeAreaView, StyleSheet, Text, StatusBar, View } from 'react-native';
-import { TextInput } from 'react-native';
+import React, { useState } from "react";
+import { StatusBar as ExpoStatusBar } from "expo-status-bar";
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  StatusBar,
+  View,
+  Button,
+  TextInput,
+} from "react-native";
+import SinglelineTextInputNativeComponent from "react-native/Libraries/Components/TextInput/RCTMultilineTextInputNativeComponent";
 
 export default function App() {
-  return (
-    <SafeAreaView style={{ marginTop: StatusBar.currentHeight }}>
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+  const [text, setText] = useState("Useless Text");
 
-        <ExpoStatusBar style='auto' />
+  console.log(text);
+
+  const handleSubmit = () => {
+    console.log(text);
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={{ flexDirection: "column", marginTop: 100, padding: 10 }}>
+        <Text>Open up App.js to start working on your app!</Text>
+        <TextInput onChangeText={(text) => setText(text)} value={text} />
+
+        <ExpoStatusBar style="auto" />
+
+        <Button
+          onPress={() => {
+            handleSubmit();
+          }}
+          title="Learn More"
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
+        />
       </View>
     </SafeAreaView>
   );
@@ -16,9 +43,8 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginTop: StatusBar.currentHeight,
+
+    backgroundColor: "#ffff",
   },
 });
