@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import emailjs from "@emailjs/browser";
-import { StatusBar as ExpoStatusBar } from "expo-status-bar";
+import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
+import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import {
   SafeAreaView,
   StyleSheet,
@@ -9,28 +9,33 @@ import {
   View,
   Button,
   TextInput,
-} from "react-native";
+  Alert,
+} from 'react-native';
 
 export default function App() {
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = () => {
     emailjs
       .send(
-        "service_72716sm",
-        "template_f18li4r",
+        'service_72716sm',
+        'template_fdpwy97',
         { name: name, number: number, email: email, message: message },
-        "user_bYgWfFHFkKyvzGnEDagVD"
+        'user_bYgWfFHFkKyvzGnEDagVD'
       )
       .then(
         function (response) {
-          console.log("SUCCESS!", response.status, response.text);
+          if (response.status === 200) {
+            Alert.alert('Email Send ');
+            setName(''), setNumber(''), setEmail(''), setMessage('');
+          }
+          console.log('SUCCESS!', response.status, response.text);
         },
         function (error) {
-          console.log("FAILED...", error);
+          console.log('FAILED...', error);
         }
       );
   };
@@ -40,7 +45,7 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <View
         style={{
-          flexDirection: "column",
+          flexDirection: 'column',
           marginTop: 100,
           paddingHorizontal: 20,
         }}
@@ -48,8 +53,9 @@ export default function App() {
         <Text
           style={{
             fontSize: 30,
-            fontWeight: 900,
-            textAlign: "center",
+            fontWeight: 'bold',
+            textAlign: 'center',
+            marginBottom: 10,
           }}
         >
           Contact US!!
@@ -102,15 +108,15 @@ export default function App() {
           value={message}
         />
 
-        <ExpoStatusBar style="auto" />
+        <ExpoStatusBar style='auto' />
 
         <Button
           onPress={() => {
             handleSubmit();
           }}
-          title="Submit Information"
-          color="#841584"
-          accessibilityLabel="Learn more about this purple button"
+          title='Submit Information'
+          color='#841584'
+          accessibilityLabel='Learn more about this purple button'
         />
       </View>
     </SafeAreaView>
@@ -121,6 +127,6 @@ const styles = StyleSheet.create({
   container: {
     marginTop: StatusBar.currentHeight,
 
-    backgroundColor: "#ffff",
+    backgroundColor: '#ffff',
   },
 });
