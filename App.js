@@ -45,7 +45,16 @@ export default function App() {
           paddingHorizontal: 20,
         }}
       >
-        <Text>Open up App.js to start working on your app!</Text>
+        <Text
+          style={{
+            fontSize: 30,
+            fontWeight: 900,
+            textAlign: "center",
+          }}
+        >
+          Contact US!!
+        </Text>
+        <Text>Name</Text>
         <TextInput
           style={{
             borderWidth: 1,
@@ -56,6 +65,7 @@ export default function App() {
           onChangeText={(text) => setName(text)}
           value={name}
         />
+        <Text>Mobile Number</Text>
         <TextInput
           style={{
             borderWidth: 1,
@@ -63,9 +73,11 @@ export default function App() {
             paddingVertical: 5,
             marginVertical: 15,
           }}
+          // keyboardType:number-pad
           onChangeText={(text) => setNumber(text)}
           value={number}
         />
+        <Text>Email</Text>
         <TextInput
           style={{
             borderWidth: 1,
@@ -76,6 +88,7 @@ export default function App() {
           onChangeText={(text) => setEmail(text)}
           value={email}
         />
+        <Text>Message</Text>
         <TextInput
           style={{
             borderWidth: 1,
@@ -83,6 +96,8 @@ export default function App() {
             paddingVertical: 5,
             marginVertical: 15,
           }}
+          multiline
+          numberOfLines={4}
           onChangeText={(text) => setMessage(text)}
           value={message}
         />
